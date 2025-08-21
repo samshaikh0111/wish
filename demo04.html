@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Love Letter For You</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Raleway', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            overflow-x: hidden;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            padding: 40px 20px;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .heart {
+            position: absolute;
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.7);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .letter-content {
+            padding: 40px;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            color: #555;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease;
+        }
+        
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            color: #d44d77;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            border-bottom: 2px solid #fad0c4;
+            padding-bottom: 10px;
+        }
+        
+        .shayari {
+            background: linear-gradient(135deg, #fdfcfb 0%, #f5f7fa 100%);
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #d44d77;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.6rem;
+            text-align: center;
+            color: #d44d77;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .signature {
+            text-align: right;
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: #d44d77;
+            margin-top: 30px;
+        }
+        
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .floating-heart {
+            position: absolute;
+            font-size: 20px;
+            color: #ff9a9e;
+            opacity: 0;
+            animation: float 8s linear infinite;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            color: white;
+        }
+        
+        .social-icons {
+            margin-top: 10px;
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: transform 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Music Player */
+        .music-player {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            max-width: 400px;
+            margin: 30px auto;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .player-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 15px;
+        }
+        
+        .player-btn {
+            background: #d44d77;
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(212, 77, 119, 0.4);
+        }
+        
+        .player-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .letter-content {
+                padding: 20px;
+            }
+            
+            .shayari {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>My Dearest DUMMO </h1>
+            <p class="subtitle">A letter from my heart to yours</p>
+            <div class="heart" style="top: 20px; left: 20%;">❤</div>
+            <div class="heart" style="top: 60px; right: 25%;">❤</div>
+            <div class="heart" style="bottom: 30px; left: 30%;">❤</div>
+        </header>
+        
+        <div class="letter-content">
+            <div class="section">
+                <h2 class="section-title">My Beautiful Dream</h2>
+                <p>My dearest love,</p>
+                <p>As I sit down to write this letter, my heart overflows with emotions that are too profound for words to capture. Yet, I will try to express what my soul feels for you.</p>
+                
+                <div class="shayari">
+                    Teri aankhon mein maine dekha hai wo aalam,<br>
+                    Jise dhoondhta phirta tha har jahan main.<br>
+                    Tu mili to lagta hai sab kuch mil gaya,<br>
+                    Ab to bas tera hi hai har arman main.
+                </div>
+                
+                <p>From the moment you entered my life, everything changed. The colors became brighter, the music became sweeter, and every moment became more precious. You are the missing piece I never knew I was searching for.</p>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Your Beautiful Soul</h2>
+                <p>What I love most about you is not just your beautiful smile or your captivating eyes, but the incredible person you are inside. Your kindness touches everyone around you, your strength inspires me, and your compassion makes this world a better place.</p>
+                
+                <div class="shayari">
+                    Na sirf ek khoobsurat chehra hai tumhara,<br>
+                    Balkin ek khoobsurat dil bhi rakhti ho tum.<br>
+                    Har kisi ki madad ko haazir rehti ho,<br>
+                    Isliye to itni pasand aati ho tum.
+                </div>
+                
+                <p>I watch in awe as you navigate life with grace and determination. Your intelligence lights up every conversation we have, and your sense of humor fills my days with laughter. With you, every ordinary moment transforms into something magical.</p>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">My Promise to You</h2>
+                <p>I want to make you a promise today - a promise that I will always stand by your side, through sunshine and storm. I will be your shelter when you need comfort and your biggest cheerleader when you pursue your dreams.</p>
+                
+                <div class="shayari">
+                    Vaada hai tumse ye dil ka mere,<br>
+                    Na kabhi dur honge na honge juda.<br>
+                  Har mushkil mein saath dunga tumhara,<br>
+                    Bas ek wada nibhana tumse mera.
+                </div>
+                
+                <p>I promise to love you not only when it's easy but when it's difficult too. I will cherish you, respect you, and honor you every day of my life. Your happiness will always be my priority, and your dreams will become my missions.</p>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">You Complete Me</h2>
+                <p>Before you, I didn't know what it felt like to have someone who understands me completely. You see through my smiles when I'm trying to be strong, and you sense my fears even when I don't voice them.</p>
+                
+                <div class="shayari">
+                    Tum ho wo khushi jo har pal chahiye,<br>
+                    Tum ho wo dua jo har roz mangi.<br>
+                    Tum ho wo aas jo kabhi na tooti,<br>
+                    Tum ho wo pyaar jo kabhi na ruka.
+                </div>
+                
+                <p>With you, I've found my home. Not a place, but a feeling - a sense of belonging that I've been searching for my whole life. Your arms are my sanctuary, your voice is my peace, and your love is my greatest blessing.</p>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">My Eternal Love</h2>
+                <p>They say that true love stories never have endings, and I believe ours will continue beyond lifetimes. What we share is rare and precious, and I will guard it with everything I have.</p>
+                
+                <div class="shayari">
+                    Mohabbat nahi aasaan humko bata dena,<br>
+                    Tumhare liye to hum jaan bhi luta denge.<br>
+                    Na jaane kab se intezaar tha humko,<br>
+                    Tum mile to hum dua hi kar denge.
+                </div>
+                
+                <p>No matter where life takes us, always remember that my love for you is constant and unwavering. You are the first thought on my mind when I wake and the last dream before I sleep. Every beat of my heart whispers your name.</p>
+                
+                <p class="signature">Forever yours,<br>Your kadoos</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="music-player">
+            <h3>  Next To Photos </h3>
+            <div class="player-controls">
+                <a href="demo05.html"><button class="player-btn" onclick="demo03.html"> . </button></a>
+        </div>
+    
+    <div class="floating-hearts" id="hearts"></div>
+
+    <script>
+        // Create floating hearts
+        function createHearts() {
+            const heartsContainer = document.getElementById('hearts');
+            const heartCount = 50;
+            
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.innerHTML = '<i class="fas fa-heart"></i>';
+                heart.classList.add('floating-heart');
+                
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 6 + 4) + 's';
+                heart.style.animationDelay = (Math.random() * 5) + 's';
+                heart.style.fontSize = (Math.random() * 15 + 10) + 'px';
+                
+                heartsContainer.appendChild(heart);
+            }
+        }
+        
+        // Check if section is in viewport for animation
+        function checkSections() {
+            const sections = document.querySelectorAll('.section');
+            
+            sections.forEach(section => {
+                const position = section.getBoundingClientRect();
+                
+                if (position.top < window.innerHeight - 100) {
+                    section.classList.add('visible');
+                }
+            });
+        }
+        
+        // Initialize
+        window.onload = function() {
+            createHearts();
+            
+            // Check section visibility on scroll
+            window.addEventListener('scroll', checkSections);
+            checkSections();
+        };
+    </script>
+</body>
+</html>
